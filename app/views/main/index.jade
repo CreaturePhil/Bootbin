@@ -1,5 +1,11 @@
 extends ../layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .jumbotron.text-center
+    h1.display-3 Bootbin
+    p.lead Store text snippets.
+    .row
+      a.btn.btn-primary.lg(href="/signup") Sign up
+      span &nbsp;&nbsp;&nbsp;
+      a.btn.btn-primary.lg(href="/new") New Bin
+

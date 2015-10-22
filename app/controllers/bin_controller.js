@@ -7,7 +7,7 @@ module.exports = {
 
   postNewBin: function(req, res, next) {
     req.assert('content', 'Bin cannot be empty.').notEmpty();
-    req.assert('content', 'Bin is too big.').len(0, 10000);
+    req.assert('content', 'Bin is too big.').len(0, 100000);
     
     var errors = req.validationErrors();
 
@@ -26,8 +26,6 @@ module.exports = {
       commonBin.author = req.user.username;
     }
 
-    console.log(req.body);
-
     var bin = new Bin(commonBin);
 
     bin.save(function(err) {
@@ -39,7 +37,7 @@ module.exports = {
   getBin: function(req, res, next) {
     Bin.findOne({ hash: req.params.binhash }, function(err, bin) {
       if (err || !bin) return next(err); 
-      res.render('bin/content', { title: bin.hash, Bin: bin })
+      res.render('bin/content', { title: bin.hash, Bin: bin });
     });
   }
 };

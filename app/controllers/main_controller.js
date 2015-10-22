@@ -1,9 +1,17 @@
+var Bin = require('../models/Bin');
+
 module.exports = {
-  getIndex: function(req, res) {
+  getIndex: function(req, res, next) {
     if (!req.isAuthenticated()) {
       res.render('main/index', { title: 'Bootbin' });
     } else {
-      res.render('main/dashboard', { title: 'Bootbin' });
+      Bin.find({}, function(err, bins) {
+        if (err) return next(err);
+        var newBins = bins.filter(function(bin) {
+          return bin.uid === req.user.uid;
+        }).reverse();
+        res.render('main/dashboard', { title: 'Bootbin', bins: newBins });
+      });
     }
   },
 

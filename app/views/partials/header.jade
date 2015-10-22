@@ -1,22 +1,15 @@
-.navbar.navbar-default.navbar-static-top(role="navigation")
-  .container
-    .navbar-header
-      button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-collapse")
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand(href="/")
-        i.fa.fa-cube
-        | Bootbin
-    .collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li(class=title=="About"?"active":undefined): a(href="/about") About
-        li(class=title=="Protected"?"active":undefined): a(href="/protected") Protected
-        li(class=title=="New Bin"?"active":undefined): a(href="/new") New Bin
-      ul.nav.navbar-nav.navbar-right
-        if !user
-          li(class=title=="Log In"?"active":undefined): a(href="/login") Log In
-          li(class=title=="Sign Up"?"active":undefined): a(href="/signup") Sign Up
-        else
-          li: a(href="/logout") Sign out
+nav.navbar.navbar-static-top.navbar-dark.bg-primary.m-b-md
+  a.navbar-brand(href="/") Bootbin
+  ul.nav.navbar-nav
+    li.nav-item(class=title=="New Bin"?"active":null)
+      a.nav-link(href="/new") New Bin
+  ul.nav.navbar-nav.pull-right
+    if !user
+      li.nav-item(class=title=="Log In"?"active":null)
+          a.nav-link(href="/login") Log In
+      li.nav-item(class=title=="Sign Up"?"active":null)
+        a.nav-link(href="/signup") Sign Up
+    else
+      li.nav-item
+        a.nav-link(href="/logout") Sign out
+

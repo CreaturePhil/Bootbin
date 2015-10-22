@@ -5,19 +5,25 @@ block styles
 
 block content
   form(role="form" method="POST")
-    input(type="hidden" name="_csrf" value=_csrf)
-    .form-group
-      .row
-        .col-md-11
-          if user
-            select.form-control(name="visibility" required)
-              option(selected="selected") Public
-              option Private
-        .col-md-1
-          button.btn.btn-primary(type="submit") Save
-
     input(type="hidden" id="x" name="content" required)
     trix-editor(input="x")
+    br
+    input(type="hidden" name="_csrf" value=_csrf)
+    .form-group
+      if user
+        .row
+          .col-md-6.text-right
+            .btn-group(data-toggle="buttons")
+              label.btn.btn-primary.active
+                input#option1(type="radio" name="visibility" required autocomplete="off" checked value="Public")
+                | Public
+              label.btn.btn-primary
+                input#option2(type="radio" name="visibility" required autocomplete="off" value="Private")
+                | Private
+          .col-md-6
+            button.btn.btn-primary(type="submit") Save
+      else
+        button.btn.btn-primary.center-block(type="submit") Save
 
 block scripts
   script(src="/js/trix.js")
