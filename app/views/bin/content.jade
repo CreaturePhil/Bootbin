@@ -1,0 +1,13 @@
+extends ../layout
+
+block styles
+  link(rel="stylesheet" href="/css/trix.css")
+
+block content
+  if Bin.visibility === 'Public'
+    div!= Bin.content
+  else
+    if Bin.visibility === 'Private' && Bin.author === (user && user.username)
+      div!= Bin.content
+    else
+      h1 This bin is private.

@@ -1,0 +1,23 @@
+extends ../layout
+
+block styles
+  link(rel="stylesheet" href="/css/trix.css")
+
+block content
+  form(role="form" method="POST")
+    input(type="hidden" name="_csrf" value=_csrf)
+    .form-group
+      .row
+        .col-md-11
+          if user
+            select.form-control(name="visibility" required)
+              option(selected="selected") Public
+              option Private
+        .col-md-1
+          button.btn.btn-primary(type="submit") Save
+
+    input(type="hidden" id="x" name="content" required)
+    trix-editor(input="x")
+
+block scripts
+  script(src="/js/trix.js")
