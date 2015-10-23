@@ -3,6 +3,13 @@ extends ../layout
 block content
   if Bin.visibility === 'Public'
     i= moment(Bin.createdAt).format('LLLL')
+    if Bin.author === (user && user.username)
+      .pull-right
+        form(role="form" method="POST")
+          input(type="hidden" name="_csrf" value=_csrf)
+          input(type="hidden" name="uid" value=Bin.uid)
+          input(type="hidden" name="hash" value=Bin.hash)
+          button.btn.btn-danger.btn-sm(type="submit") Delete
     br
     br
     div!= Bin.content

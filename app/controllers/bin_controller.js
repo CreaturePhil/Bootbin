@@ -36,8 +36,22 @@ module.exports = {
 
   getBin: function(req, res, next) {
     Bin.findOne({ hash: req.params.binhash }, function(err, bin) {
-      if (err || !bin) return next(err); 
+      if (err || !bin) return next(err);
       res.render('bin/content', { title: bin.hash, Bin: bin });
+    });
+  },
+
+  removeBin: function(req, res, next) {
+    if (!req.isAuthenticated()) {
+      return res.redirect('/' + req.body.hash); 
+    }
+    if (req.body.uid !== req.user.username) {
+      return res.redirect('/' + req.body.hash); 
+    }
+
+    Bin.remove({ hash: req.body.hash }, function(err) {
+      if (err) return next(err);
+      res.redirect('/');
     });
   }
 };
