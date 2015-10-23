@@ -9,6 +9,10 @@ block content
         input(type="hidden" name="_csrf" value=_csrf)
         .form-group: input.form-control(type="text" name="username" placeholder="Username" required)
         .form-group: input.form-control(type="password" name="password" placeholder="Password" required)
+        .checkbox
+          label
+            input(type="checkbox" name="remember")
+            | &nbsp;Keep me logged in
         .form-group: button.btn.btn-primary.center-block(type="submit") Log In
       hr
       .text-center

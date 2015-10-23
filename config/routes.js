@@ -27,6 +27,6 @@ router.route('/new')
   .post(binController.postNewBin);
 
 router.route('/:binhash')
-  .get(binController.getBin)
+  .get(binController.getBin);
 
 module.exports = router;

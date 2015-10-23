@@ -21,6 +21,13 @@ module.exports = {
       return res.redirect('/login');
     }
 
+    if (req.body.remember) {
+      // 30 days
+      req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 30;
+    } else {
+      req.session.cookie.expires = false;
+    }
+
     passport.authenticate('local', function(err, user, info) {
       if (err) return next(err);
       if (!user) {
