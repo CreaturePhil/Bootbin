@@ -15,6 +15,7 @@ var lusca = require('lusca');
 var methodOverride = require('method-override');
 var passport = require('passport');
 var path = require('path');
+var moment = require('moment');
 var mongoose = require('mongoose');
 var session = require('express-session');
 
@@ -85,7 +86,11 @@ app.use(lusca({
   xssProtection: true
 }));
 
-// Make local variables avaliable in templates.
+/**
+ * Make local variables avaliable in templates.
+ */
+
+app.locals.moment = moment;
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();

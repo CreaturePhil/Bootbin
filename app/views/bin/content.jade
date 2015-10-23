@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   if Bin.visibility === 'Public'
-    i= Bin.createdAt
+    i= moment(Bin.createdAt).format('LLLL')
     br
     br
     div!= Bin.content

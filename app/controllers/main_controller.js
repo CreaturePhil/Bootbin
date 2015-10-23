@@ -13,13 +13,5 @@ module.exports = {
         res.render('main/dashboard', { title: 'Bootbin', bins: newBins });
       });
     }
-  },
-
-  getAbout: function(req, res) {
-    res.render('main/about', { title: 'About' });
-  },
-
-  getProtected: function(req, res) {
-    res.render('main/protected', { title: 'Protected' });
   }
 };

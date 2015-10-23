@@ -5,11 +5,11 @@ block content
     each bin in bins
       a.list-group-item(href="/" + bin.hash)
         .pull-right
-          small: i= bin.createdAt
+          small: i= moment(bin.createdAt).format('LLLL')
           span &nbsp;
           if bin.visibility === "Public"
             span.label.label-pill.label-primary= bin.visibility
           else
             span.label.label-pill.label-default= bin.visibility
-        div= bin.content
+        div!= bin.content
 
