@@ -11,5 +11,5 @@ block content
             span.label.label-pill.label-primary= bin.visibility
           else
             span.label.label-pill.label-default= bin.visibility
-        div!= bin.content
+        div!= bin.content.replace(/<br>/g, '{br}').replace(/<\/?[^>]+(>|$)/g, '').replace(/\{br\}/g, '<br>')
 
