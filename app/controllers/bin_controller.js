@@ -8,7 +8,7 @@ module.exports = {
   postNewBin: function(req, res, next) {
     req.assert('content', 'Bin cannot be empty.').notEmpty();
     req.assert('content', 'Bin is too big.').len(0, 100000);
-    
+
     var errors = req.validationErrors();
 
     if (errors) {
@@ -45,13 +45,13 @@ module.exports = {
     var hash = req.params.binhash;
 
     if (!req.isAuthenticated()) {
-      return res.redirect('/' + hash); 
+      return res.redirect('/' + hash);
     }
 
     Bin.findOne({ hash: hash }, function(err, bin) {
       if (err || !bin) return next(err);
       if (bin.uid !== req.user.uid) {
-        return res.redirect('/' + hash); 
+        return res.redirect('/' + hash);
       }
 
       Bin.remove({ hash: hash }, function(err) {
