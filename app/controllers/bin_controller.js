@@ -45,13 +45,17 @@ module.exports = {
     if (!req.isAuthenticated()) {
       return res.redirect('/' + req.body.hash); 
     }
-    if (req.body.uid !== req.user.username) {
-      return res.redirect('/' + req.body.hash); 
-    }
 
-    Bin.remove({ hash: req.body.hash }, function(err) {
-      if (err) return next(err);
-      res.redirect('/');
+    Bin.findOne({ hash: req.params.binhash }, function(err, bin) {
+      if (err || !bin) return next(err);
+      if (bin.uid !== req.user.username) {
+        return res.redirect('/' + req.body.hash); 
+      }
+
+      Bin.remove({ hash: req.body.hash }, function(err) {
+        if (err) return next(err);
+        res.redirect('/');
+      });
     });
   }
 };
