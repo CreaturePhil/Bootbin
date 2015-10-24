@@ -42,11 +42,11 @@ module.exports = {
   },
 
   removeBin: function(req, res, next) {
-    if (!req.isAuthenticated()) {
-      return res.redirect('/' + req.params.binhash); 
-    }
-
     var hash = req.params.binhash;
+
+    if (!req.isAuthenticated()) {
+      return res.redirect('/' + hash); 
+    }
 
     Bin.findOne({ hash: hash }, function(err, bin) {
       if (err || !bin) return next(err);
